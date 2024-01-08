@@ -1,0 +1,76 @@
+{
+  "products":[
+    {
+        "id": 1,
+        "name": "Syltherine",
+        "img": "https://s3-alpha-sig.figma.com/img/4491/a0ea/43eebd52ea72d60650f31030ec4bf7e6?Expires=1702252800&Signature=Oshj1gLZvZDjVyneYeirxiuc5V26pK9CBLX1CDO6CLSdOOvejt4XpLqS4-J9s97n9COP92imUeefIvSuFvV471oD5~ZBjx1Qq~50D7z1qr0Aa8xx5Ag9nNu8oZ0B3h6kEbCdGpZo8EAn7Mxw59TE7INZRF0h7k8Pcvd914D5NRpUTU7MFRTaPPi0ltXDcTEjiKaPfpOnJzGCNq7sj~8zorvKEVbIfxp5G89mr7LCQKs9mgsnOq9~L8zjSxNqYU4u9NKQ8~sSBlI4yt907dovY5ZsR5in3x~KROSNfAJK2-v7jErgEWdhlaDBD0g~shIkYn1M6QzNaFZN4sJxIx8KWw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 2,
+        "name": "Leviosa",
+        "img": "https://s3-alpha-sig.figma.com/img/3ed3/53ed/bdb0310fb379a6b1828809d2c0652533?Expires=1702252800&Signature=FIwdNA8l0fr~1VXqRXnpHzmkO84FI6fkafC5p0GMb8mOMaLmxwytOoAyuVhg75OELr9RiwjHybbnvcxnoMxan-0P3M3Vg4Dz22SGLybTKNu-fqt-Y-DbdU6NyRTxwZHyRTY6r8fRrB6Z46BExahYEL92LnVZ3z2ZAaVf6HE6CMl1KSy7MaQXXmXhrlBlkSVMiUGzm89qO7dta1nD85qCaMCO-UMkiyK4wXKYra~ZaQFMV~3kpgT2tqoKJf7F40NJVJuiWW19pcqSIZyzYyms1Pv1AqPltU1FkWeFw6-GxIPTdZKJc-x4bI3pPhoy4LdJtVLm3oHVtb0Eg-njHAmMCA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 3,
+        "name": "Lolito",
+        "img": "https://s3-alpha-sig.figma.com/img/2084/99f3/7c62fb49f7d4a1a6a5dc5959b40150ed?Expires=1702252800&Signature=LZePCZxweKT9XCj9QR95SXp-qT1qrLa52Zgd3vyzOHPxonH6yodTklEMZWPUm~7aIMrnkTZ55~y3xSuFkkiWZ0G8SXIuC0biado5gSxBcLZKYEfvlMRIyugJheYwiVddW4FBStFrne7q4qyQYSuRBmL1S0HCcaOPpRMc2atwEHOyQdegdRbj7JgWNOsBwkFf5x4y~LvBxWb22bC5E8Hx36IyqwexZCEQFkWNM2Nu8RKKl8HRJ4zChgP-QBXnHF16xzmbzR8kXaBoswLMVr3IQFt6GfwlfEJgPyi15uMy0QYxVIh5OBIidAeFzCd6K5tSvfxi4C0ydDHVDqOYWj9-XA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Luxury big sofa",
+        "price": 7000000,
+        "oldPrice": 14000000,
+        "discount": "-30%"
+    },
+    {
+        "id": 4,
+        "name": "Respira",
+        "img": "https://s3-alpha-sig.figma.com/img/1f73/e563/4a5dbc0c29efbae1beca6ab40dd9b598?Expires=1702252800&Signature=Iko~PjHRGo8sYCePk0WGWpKWmsSmCvgpJkekvfHZwyopWILJraxyJNn6iDGySUCyyx~ocmwqXdjRqCtO5QQT-fpFtwdmdzYR95~75jw43~DL~IT16aEbQXFfYy-zlm0HrVj85v22s-t6AaGihswAxjAZcMbCtc0kBNy6vZ8fQu4OG-JXr2m4vvjlYePeonVbCl40PPGChkrXz0sOkDLWag5vD1D6KoHkvG07NOuhmlEPJeeT8a7F87RcHlng~iUJCQEsSzV5n~oMBZ~d1ApokHq5Cc96~1ozr36AVs-~jdeAIUXiO9njYXy-XQhK8doAsJNx-m9aATV~v4x8f0oRIg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Outdoor bar table and stool",
+        "price": 500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 5,
+        "name": "Syltherine",
+        "img": "https://s3-alpha-sig.figma.com/img/4491/a0ea/43eebd52ea72d60650f31030ec4bf7e6?Expires=1702252800&Signature=Oshj1gLZvZDjVyneYeirxiuc5V26pK9CBLX1CDO6CLSdOOvejt4XpLqS4-J9s97n9COP92imUeefIvSuFvV471oD5~ZBjx1Qq~50D7z1qr0Aa8xx5Ag9nNu8oZ0B3h6kEbCdGpZo8EAn7Mxw59TE7INZRF0h7k8Pcvd914D5NRpUTU7MFRTaPPi0ltXDcTEjiKaPfpOnJzGCNq7sj~8zorvKEVbIfxp5G89mr7LCQKs9mgsnOq9~L8zjSxNqYU4u9NKQ8~sSBlI4yt907dovY5ZsR5in3x~KROSNfAJK2-v7jErgEWdhlaDBD0g~shIkYn1M6QzNaFZN4sJxIx8KWw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 6,
+        "name": "Syltherine",
+        "img": "https://s3-alpha-sig.figma.com/img/3ed3/53ed/bdb0310fb379a6b1828809d2c0652533?Expires=1702252800&Signature=FIwdNA8l0fr~1VXqRXnpHzmkO84FI6fkafC5p0GMb8mOMaLmxwytOoAyuVhg75OELr9RiwjHybbnvcxnoMxan-0P3M3Vg4Dz22SGLybTKNu-fqt-Y-DbdU6NyRTxwZHyRTY6r8fRrB6Z46BExahYEL92LnVZ3z2ZAaVf6HE6CMl1KSy7MaQXXmXhrlBlkSVMiUGzm89qO7dta1nD85qCaMCO-UMkiyK4wXKYra~ZaQFMV~3kpgT2tqoKJf7F40NJVJuiWW19pcqSIZyzYyms1Pv1AqPltU1FkWeFw6-GxIPTdZKJc-x4bI3pPhoy4LdJtVLm3oHVtb0Eg-njHAmMCA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 7,
+        "name": "Syltherine",
+        "img": "https://s3-alpha-sig.figma.com/img/2084/99f3/7c62fb49f7d4a1a6a5dc5959b40150ed?Expires=1702252800&Signature=LZePCZxweKT9XCj9QR95SXp-qT1qrLa52Zgd3vyzOHPxonH6yodTklEMZWPUm~7aIMrnkTZ55~y3xSuFkkiWZ0G8SXIuC0biado5gSxBcLZKYEfvlMRIyugJheYwiVddW4FBStFrne7q4qyQYSuRBmL1S0HCcaOPpRMc2atwEHOyQdegdRbj7JgWNOsBwkFf5x4y~LvBxWb22bC5E8Hx36IyqwexZCEQFkWNM2Nu8RKKl8HRJ4zChgP-QBXnHF16xzmbzR8kXaBoswLMVr3IQFt6GfwlfEJgPyi15uMy0QYxVIh5OBIidAeFzCd6K5tSvfxi4C0ydDHVDqOYWj9-XA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    },
+    {
+        "id": 8,
+        "name": "Syltherine",
+        "img": "https://s3-alpha-sig.figma.com/img/1f73/e563/4a5dbc0c29efbae1beca6ab40dd9b598?Expires=1702252800&Signature=Iko~PjHRGo8sYCePk0WGWpKWmsSmCvgpJkekvfHZwyopWILJraxyJNn6iDGySUCyyx~ocmwqXdjRqCtO5QQT-fpFtwdmdzYR95~75jw43~DL~IT16aEbQXFfYy-zlm0HrVj85v22s-t6AaGihswAxjAZcMbCtc0kBNy6vZ8fQu4OG-JXr2m4vvjlYePeonVbCl40PPGChkrXz0sOkDLWag5vD1D6KoHkvG07NOuhmlEPJeeT8a7F87RcHlng~iUJCQEsSzV5n~oMBZ~d1ApokHq5Cc96~1ozr36AVs-~jdeAIUXiO9njYXy-XQhK8doAsJNx-m9aATV~v4x8f0oRIg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+        "sortDesc": "Stylish cafe chair",
+        "price": 2500000,
+        "oldPrice": 3500000,
+        "discount": "-30%"
+    }
+  ]
+}
