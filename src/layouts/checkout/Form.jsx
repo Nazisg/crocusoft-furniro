@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import {
@@ -13,7 +13,14 @@ export default function Form() {
   const formData = useSelector((state) => state.checkout.formData);
   const country = useSelector((state) => state.checkout.country);
   const province = useSelector((state) => state.checkout.province);
-  const [selectedCountryId, setSelectedCountryId] = useState(null);
+  const [selectedCountryId, setSelectedCountryId] = useState(0);
+  const [selectProvinceId, setSelectProvinceId] = useState(0);
+  const userId = localStorage.getItem("userId");
+  const userID_Int = useMemo(() => {
+    if (userId) {
+      return parseInt(userId);
+    }
+  }, [userId]);
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required(),
@@ -36,16 +43,36 @@ export default function Form() {
       companyName: "",
       streetAddress: "",
       townCity: "",
-      province: "",
+      province: 0,
       zipCode: "",
       phone: "",
       email: "",
       additionalInformation: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("Form submitted with values:", values);
-      dispatch(fetchCheckoutData(values));
+    onSubmit: (values,{resetForm}) => {
+      dispatch(
+        fetchCheckoutData({
+          appUserId: userID_Int,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          companyName: values.companyName,
+          countryId: parseInt(selectedCountryId),
+          streetAddress: values.streetAddress,
+          city: values.townCity,
+          provinceId: parseInt(values.province),
+          zipcode: values.zipCode,
+          phone: values.phone,
+          emailAddress: values.email,
+          additionalInfo: values.additionalInformation,
+        })
+      ).then((confirm) => {
+        console.log(confirm);
+        if(confirm?.meta?.requestStatus === "fulfilled"){
+          alert("ok")
+        }
+      });
+      resetForm()
     },
   });
 
@@ -69,7 +96,10 @@ export default function Form() {
   );
 
   return (
-    <form className="w-[75%] flex justify-between items-start min-[320px]:flex-col sm:flex-col md:flex-row lg:flex-row">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="w-[75%] flex justify-between items-start min-[320px]:flex-col sm:flex-col md:flex-row lg:flex-row"
+    >
       <div className="lg:w-[45%] md:w-[45%] sm:w-[100%] min-[320px]:w-[100%] flex flex-col gap-6 ">
         <h1 className="font-semibold text-[25px] md:text-[28px] lg:text-[33px]">
           Billing details
@@ -134,6 +164,11 @@ export default function Form() {
             <input
               className="w-full border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2.5 sm:p-2.5 md:py-4 md:px-7 lg:py-4 lg:px-7"
               type="text"
+              id="companyName"
+              name="companyName"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.companyName}
             />
           </label>
           <label className="w-full font-medium flex flex-col gap-2">
@@ -157,6 +192,11 @@ export default function Form() {
             <input
               className="w-full border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2.5 sm:p-2.5 md:py-4 md:px-7 lg:py-4 lg:px-7"
               type="text"
+              id="townCity"
+              name="townCity"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.townCity}
             />
           </label>
           <label className="w-full font-medium flex flex-col gap-2">
@@ -169,7 +209,9 @@ export default function Form() {
               } block w-full min-[320px]:p-2.5 sm:p-2.5 md:py-4 md:px-7 lg:py-4 lg:px-7 border border-[#9F9F9F] text-[#9F9F9F] rounded-[10px] leading-tight focus:outline-none`}
               id="province"
               name="province"
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+              }}
               onBlur={formik.handleBlur}
               value={formik.values.province}
             >
@@ -189,6 +231,11 @@ export default function Form() {
             <input
               className="w-full border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2.5 sm:p-2.5 md:py-4 md:px-7 lg:py-4 lg:px-7"
               type="text"
+              id="zipCode"
+              name="zipCode"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.zipCode}
             />
           </label>
           <label className="w-full font-medium flex flex-col gap-2">
@@ -238,6 +285,11 @@ export default function Form() {
               className="w-full border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2.5 sm:p-2.5 md:py-4 md:px-7 lg:py-4 lg:px-7"
               type="text"
               placeholder="Additional information"
+              id="additionalInformation"
+              name="additionalInformation"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.additionalInformation}
             />
           </label>
         </div>
@@ -345,7 +397,10 @@ export default function Form() {
           <span className="font-semibold"> privacy policy</span>.
         </p>
         <div className="flex justify-center mt-4 lg:mt-7">
-          <button className="w-[60%] text-lg border border-color-black rounded-[15px] py-2 font-medium hover:bg-color-black hover:text-color-white duration-300">
+          <button
+            type="submit"
+            className="w-[60%] text-lg border border-color-black rounded-[15px] py-2 font-medium hover:bg-color-black hover:text-color-white duration-300"
+          >
             Place order
           </button>
         </div>
