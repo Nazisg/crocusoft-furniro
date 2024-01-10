@@ -19,7 +19,7 @@ export const getAllCartItems = createAsyncThunk(
     async (userId) => {
     try {
       const response = await axios.get(
-        `${baseUrl}/api/Cart/getAllCartItems/${userId}`
+        `${baseUrl}/Cart/getAllCartItems/${userId}`
       );
       return response.data;
     } catch (error) {

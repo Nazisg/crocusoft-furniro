@@ -2,23 +2,26 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
-export const fetchData = createAsyncThunk("search/fetchData", async (inputValue) => {
-  try {
-    const response = await axios.get(
-      `${baseUrl}/UserProduct/Products?Prompt=${inputValue}&ShowMore.TakeProduct=8`
-    );
-    return response.data[0].products;
-  } catch (error) {
-    throw error;
+export const fetchData = createAsyncThunk(
+  "search/fetchData",
+  async (inputValue) => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/UserProduct/Products?Prompt=${inputValue}&ShowMore.Take=8`
+      );
+      return response.data[0].products;
+    } catch (error) {
+      throw error;
+    }
   }
-});
+);
 
 export const searchSlice = createSlice({
   name: "search",
   initialState: {
     data: null,
     inputValue: "",
-    status: "idle", 
+    status: "idle",
     error: null,
   },
   reducers: {

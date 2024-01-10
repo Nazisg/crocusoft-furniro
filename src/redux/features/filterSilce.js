@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "http://immutable858-001-site1.atempurl.com/api";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
 export const fetchCategory = createAsyncThunk(
   "filter/fetchCategory",

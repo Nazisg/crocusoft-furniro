@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
 const calculateSubtotal = (items) => {
   return items.reduce((total, item) => total + parseFloat(item.price), 0);
@@ -7,7 +8,7 @@ const calculateSubtotal = (items) => {
 
 export const addToCart = createAsyncThunk('cart/addToCart', async (product) => {
   try {
-    const response = await axios.post('https://immutable858-001-site1.atempurl.com/api/Cart/addToCart', product);
+    const response = await axios.post( `${baseUrl}/Cart/addToCart`, product);
     return response.data; 
   } catch (error) {
     throw error;
