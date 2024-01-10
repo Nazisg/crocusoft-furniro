@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async (showProducts) => {
   try {
-    const response = await axios.get(`http://immutable858-001-site1.atempurl.com/api/UserProduct/Products?ShowMore.Take=${showProducts}`);
+    const response = await axios.get(`${baseUrl}/UserProduct/Products?ShowMore.Take=${showProducts}`);
     return response.data[0].products;
   } catch (error) {
     throw error;
@@ -14,7 +15,7 @@ export const fetchProductById = createAsyncThunk(
   async (id) => {
     try {
       const response = await axios.get(
-        `http://immutable858-001-site1.atempurl.com/api/UserProduct/getById/ProductPage?Id=${id}`
+        `${baseUrl}/UserProduct/getById/ProductPage?Id=${id}`
       );
       return response.data;
     } catch (error) {

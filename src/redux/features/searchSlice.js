@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
 export const fetchData = createAsyncThunk("search/fetchData", async (inputValue) => {
   try {
     const response = await axios.get(
-      `http://immutable858-001-site1.atempurl.com/api/UserProduct/Products?Prompt=${inputValue}&ShowMore.TakeProduct=8`
+      `${baseUrl}/UserProduct/Products?Prompt=${inputValue}&ShowMore.TakeProduct=8`
     );
     return response.data[0].products;
   } catch (error) {

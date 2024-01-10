@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
+
 export const submitFormData = createAsyncThunk(
   "contact/submitFormData",
   async (formData) => {
     try {
       const response = await axios.post(
-        "http://immutable858-001-site1.atempurl.com/api/ContactMessage",
+        `${baseUrl}/ContactMessage`,
         formData
       );
       return response.data;
@@ -20,7 +22,7 @@ export const fetchContactData = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "http://immutable858-001-site1.atempurl.com/api/Contact"
+        `${baseUrl}/Contact`
       );
       return response?.data?.[0];
     } catch (error) {

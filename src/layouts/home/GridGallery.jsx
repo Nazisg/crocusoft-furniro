@@ -7,7 +7,7 @@ export default function GridGallery() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://immutable858-001-site1.atempurl.com/api/Home"
+          "https://immutable858-001-site1.atempurl.com/api/Home"
         );
         setData(response.data);
       } catch (error) {}

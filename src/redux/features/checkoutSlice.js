@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
+
 export const fetchCheckoutData = createAsyncThunk(
   "checkout/FormData",
   async (formData) => {
     try {
       const response = await axios.post(
-        "http://immutable858-001-site1.atempurl.com/api/Checkout",
+        `${baseUrl}/Checkout`,
         formData
       );
       return response.data;
@@ -20,7 +22,7 @@ export const fetchCountryData = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "http://immutable858-001-site1.atempurl.com/api/Country"
+        `${baseUrl}/Country`
       );
       return response?.data;
     } catch (error) {
@@ -35,7 +37,7 @@ export const fetchProvinceData = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "http://immutable858-001-site1.atempurl.com/api/Province"
+        `${baseUrl}/Province`
       );
       return response?.data;
     } catch (error) {

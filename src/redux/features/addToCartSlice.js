@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
 export const addToCart = createAsyncThunk("cart/addToCart", async (product) => {
   try {
     const response = await axios.post(
-      "http://immutable858-001-site1.atempurl.com/api/Cart/addToCart",
+      `${baseUrl}/Cart/addToCart`,
       product
     );
     return response.data;
@@ -18,7 +19,7 @@ export const getAllCartItems = createAsyncThunk(
     async (userId) => {
     try {
       const response = await axios.get(
-        `http://immutable858-001-site1.atempurl.com/api/Cart/getAllCartItems/${userId}`
+        `${baseUrl}/api/Cart/getAllCartItems/${userId}`
       );
       return response.data;
     } catch (error) {
@@ -31,7 +32,7 @@ export const deleteItem = createAsyncThunk(
     'cart/deleteItem',
     async (deletebody, { rejectWithValue }) => {
       try {
-        await axios.delete(`http://immutable858-001-site1.atempurl.com/api/Cart/remove`, {
+        await axios.delete(`${baseUrl}/Cart/remove`, {
           data: deletebody
         });
       } catch (error) {

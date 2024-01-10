@@ -39,7 +39,7 @@ export const getFilterProducts = createAsyncThunk(
   }) => {
     const response = await axios.get(
       `${baseUrl}/UserProduct/Products?Page=${page}${
-        take > 0 ? `&ShowMore.TakeProduct=${take}` : ""
+        take > 0 ? `&ShowMore.Take=${take}` : ""
       }${
         categoryName.length > 0
           ? categoryName?.map((item) => `&CategoryNames=${item.value}`).join()

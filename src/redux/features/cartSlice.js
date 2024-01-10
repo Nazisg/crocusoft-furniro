@@ -7,7 +7,7 @@ const calculateSubtotal = (items) => {
 
 export const addToCart = createAsyncThunk('cart/addToCart', async (product) => {
   try {
-    const response = await axios.post('http://immutable858-001-site1.atempurl.com/api/Cart/addToCart', product);
+    const response = await axios.post('https://immutable858-001-site1.atempurl.com/api/Cart/addToCart', product);
     return response.data; 
   } catch (error) {
     throw error;

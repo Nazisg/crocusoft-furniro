@@ -8,7 +8,7 @@ export default function Description() {
 
   const getProduct = async (id) => {
     const res = await axios.get(
-      `http://immutable858-001-site1.atempurl.com/api/UserProduct/getById/Description?Id=${id}`
+      `https://immutable858-001-site1.atempurl.com/api/UserProduct/getById/Description?Id=${id}`
     );
     setDescription(res.data);
   };
