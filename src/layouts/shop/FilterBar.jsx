@@ -11,7 +11,6 @@ export default function FilterBar({
   setOrderByOption,
 }) 
 {
-  console.log(takeProducts)
   return (
     <section className="bg-[#F9F1E7] py-4 w-full text-lg flex justify-center">
       <div className="w-[85%] flex lg:flex-row sm:flex-col min-[320px]:flex-col gap-5 lg:gap-3 justify-center lg:justify-between items-center">
