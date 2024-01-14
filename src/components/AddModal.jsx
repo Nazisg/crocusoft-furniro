@@ -70,6 +70,13 @@ export default function AddModal() {
     setActiveColor(color);
     setSelectedColorId(colorId);
   };
+  
+  useEffect(() => {
+    if (!selectedColorId && selectedProduct?.colors?.length > 0) {
+      setSelectedColorId(selectedProduct.colors[0]?.id);
+    }
+  }, [selectedColorId, selectedProduct]);
+
   ///active size
   const [activeSize, setActiveSize] = useState(null);
   useEffect(() => {

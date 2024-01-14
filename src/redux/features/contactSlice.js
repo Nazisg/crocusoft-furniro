@@ -2,14 +2,20 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
+const jwtToken = localStorage.getItem("jwtToken")
+
 export const submitFormData = createAsyncThunk(
   "contact/submitFormData",
-  async (formData) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `${baseUrl}/ContactMessage`,
-        formData
-      );
+      const headers = {
+        Authorization: `Bearer ${jwtToken}`,
+        'Content-Type': 'application/json',
+      };
+
+      const response = await axios.post(`${baseUrl}/ContactMessage`, formData, {
+        headers,
+      });
       return response.data;
     } catch (error) {
       throw new Error("Failed to submit form data");

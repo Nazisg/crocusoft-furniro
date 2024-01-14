@@ -2,14 +2,24 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
+const getJwtToken = () => {
+  return localStorage.getItem("jwtToken");
+};
+
 export const fetchCheckoutData = createAsyncThunk(
   "checkout/FormData",
   async (formData) => {
     try {
-      const response = await axios.post(
-        `${baseUrl}/Checkout`,
-        formData
-      );
+      const token = getJwtToken();
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+
+      const response = await axios.post(`${baseUrl}/Checkout`, formData, {
+        headers,
+      });
       return response.data;
     } catch (error) {
       throw new Error("Failed to submit form data");
@@ -19,14 +29,19 @@ export const fetchCheckoutData = createAsyncThunk(
 
 export const fetchCountryData = createAsyncThunk(
   "checkout/Country",
-  async () => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `${baseUrl}/Country`
-      );
+      const token = getJwtToken();
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(`${baseUrl}/Country`, { headers });
+
       return response?.data;
     } catch (error) {
-      console.error("Error fetching contact data:", error.message);
+      console.error("Error fetching country data:", error.message);
       throw error;
     }
   }
@@ -34,14 +49,19 @@ export const fetchCountryData = createAsyncThunk(
 
 export const fetchProvinceData = createAsyncThunk(
   "checkout/Province",
-  async () => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `${baseUrl}/Province`
-      );
+      const token = getJwtToken();
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      const response = await axios.get(`${baseUrl}/Province`, { headers });
+
       return response?.data;
     } catch (error) {
-      console.error("Error fetching contact data:", error.message);
+      console.error("Error fetching province data:", error.message);
       throw error;
     }
   }

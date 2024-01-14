@@ -12,6 +12,7 @@ import searchReducer from '../features/searchSlice'
 import authReducer from '../features/authSlice'
 import checkoutReducer from "../features/checkoutSlice";
 import addToCartReducer from "../features/addToCartSlice";
+import forgotPasswordReducer from "../features/forgotPasswordSlice";
 
 const persistConfig = {
   key: "root",
@@ -32,7 +33,8 @@ export const store = configureStore({
     filter:filterReducer,
     search:searchReducer,
     auth:authReducer,
-    checkout:checkoutReducer
+    checkout:checkoutReducer,
+    forgotPassword:forgotPasswordReducer
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({

@@ -5,7 +5,6 @@ export default function GridGallery() {
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      console.log('test')
       try {
         const response = await axios.get(
           "https://immutable858-001-site1.atempurl.com/api/Home"

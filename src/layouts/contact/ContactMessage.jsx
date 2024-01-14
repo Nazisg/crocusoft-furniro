@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import * as Yup from "yup";
 import { submitFormData } from "../../redux/features/contactSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactMessage() {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.contact);
-
+  const userId = localStorage.getItem("userId");
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"),
@@ -18,6 +18,7 @@ export default function ContactMessage() {
   });
   const formik = useFormik({
     initialValues: {
+      userId: parseInt(userId),
       name: "",
       email: "",
       subject: "",
@@ -29,30 +30,25 @@ export default function ContactMessage() {
         await dispatch(submitFormData(values));
         console.log("Form data submitted successfully");
         formik.resetForm();
-        return <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        />
+        return (
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        );
       } catch (error) {
         console.error("Error submitting form data:", error.message);
       }
     },
   });
-
-  // if (status === "idle") {
-    
-  // }
-  // if (status === "loading") {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <form

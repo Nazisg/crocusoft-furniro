@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { OtpConfirmation } from "../redux/features/forgotPasswordSlice";
 import { useNavigate } from "react-router-dom";
-import { SendOTPEmail, setEmail } from "../redux/features/forgotPasswordSlice";
 
-const ForgotPassword = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const successMsg = useSelector((state) => state.forgotPassword.success);
-  const formik = useFormik({
+export default function OtpConfirm() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const email = useSelector((state) => state.forgotPassword.email); 
+    const formikOTP = useFormik({
     initialValues: {
-      email: "",
+      otpToken: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
+      otpToken: Yup.string().required("Required"),
     }),
-    onSubmit: (values, { resetForm }) => {
-      dispatch(SendOTPEmail(values));
-      dispatch(setEmail(values.email));
-      navigate("/otp-confirm");
-      resetForm();
+    onSubmit: (values) => {
+      console.log(values);
+      dispatch(
+        OtpConfirmation({
+          email: email,
+          otpToken: values.otpToken,
+        })
+      );
     },
   });
-
+  console.log(email)
   return (
     <div className="hero-bg w-full">
       <div className="backdrop-blur-[5px] w-full">
@@ -35,32 +38,32 @@ const ForgotPassword = () => {
               </h2>
               <form
                 className="mt-4 space-y-4 lg:mt-5 md:space-y-5"
-                onSubmit={formik.handleSubmit}
+                onSubmit={formikOTP.handleSubmit}
               >
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="otpToken"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your email
+                    OTP code
                   </label>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="text"
+                    name="otpToken"
+                    id="otpToken"
                     className={`${
-                      formik.touched.email && formik.errors.email
+                      formikOTP.touched.otpToken && formikOTP.errors.otpToken
                         ? "border border-color-red-accents"
                         : ""
                     }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    placeholder="example@email.com"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
+                    placeholder="XXXXXX"
+                    onChange={formikOTP.handleChange}
+                    onBlur={formikOTP.handleBlur}
+                    value={formikOTP.values.otpToken}
                   />
-                  {formik.touched.email && formik.errors.email ? (
+                  {formikOTP.touched.otpToken && formikOTP.errors.otpToken ? (
                     <div className="text-color-red-accents">
-                      {formik.errors.email}
+                      {formikOTP.errors.otpToken}
                     </div>
                   ) : null}
                 </div>
@@ -69,7 +72,7 @@ const ForgotPassword = () => {
                   type="submit"
                   className="w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-color duration-300"
                 >
-                  Send to Email
+                  Change Password
                 </button>
               </form>
             </div>
@@ -78,6 +81,4 @@ const ForgotPassword = () => {
       </div>
     </div>
   );
-};
-
-export default ForgotPassword;
+}

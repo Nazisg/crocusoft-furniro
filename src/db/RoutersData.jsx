@@ -12,6 +12,7 @@ import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import NotFound from "../pages/NotFound";
 import Profile from '../pages/Profile'
+import OtpConfirm from "../pages/OtpConfirm";
 
 const RoutesData = [
   { path: "/", element: <Home /> },
@@ -26,6 +27,7 @@ const RoutesData = [
   { path: "/search", element: <Search /> },
   { path: "/favorites", element: <Favorites /> },
   { path: "/forgot-password", element: <ForgotPassword /> },
+  { path: "/otp-confirm", element: <OtpConfirm /> },
   { path: "/profile", element: <Profile /> },
   { path: "*", element: <NotFound /> },
 ];

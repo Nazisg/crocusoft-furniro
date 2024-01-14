@@ -2,24 +2,42 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
-export const addToCart = createAsyncThunk("cart/addToCart", async (product) => {
-  try {
-    const response = await axios.post(
-      `${baseUrl}/Cart/addToCart`,
-      product
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
+const getJwtToken = () => {
+  return localStorage.getItem("jwtToken");
+};
+
+export const addToCart = createAsyncThunk(
+  "cart/addToCart",
+  async (product, thunkAPI) => {
+    try {
+      const token = getJwtToken();
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+      const response = await axios.post(
+        `${baseUrl}/Cart/addToCart`,
+        product,
+        { headers }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
-});
+);
 
 export const getAllCartItems = createAsyncThunk(
-    "cart/getAllCartItems",
-    async (userId) => {
+  "cart/getAllCartItems",
+  async (userId, thunkAPI) => {
     try {
+      const token = getJwtToken();
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
       const response = await axios.get(
-        `${baseUrl}/Cart/getAllCartItems/${userId}`
+        `${baseUrl}/Cart/getAllCartItems/${userId}`,
+        { headers }
       );
       return response.data;
     } catch (error) {
@@ -29,18 +47,24 @@ export const getAllCartItems = createAsyncThunk(
 );
 
 export const deleteItem = createAsyncThunk(
-    'cart/deleteItem',
-    async (deletebody, { rejectWithValue }) => {
-      try {
-        await axios.delete(`${baseUrl}/Cart/remove`, {
-          data: deletebody
-        });
-      } catch (error) {
-        console.error('Error deleting item:', error.message);
-        return rejectWithValue(error.message); 
-      }
+  'cart/deleteItem',
+  async (deletebody, { rejectWithValue, getState }) => {
+    try {
+      const token = getJwtToken();
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      await axios.delete(`${baseUrl}/Cart/remove`, {
+        headers,
+        data: deletebody,
+      });
+    } catch (error) {
+      console.error('Error deleting item:', error.message);
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
+
 
 const cartSlice = createSlice({
   name: "addToCart",

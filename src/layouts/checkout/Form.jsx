@@ -307,13 +307,12 @@ export default function Form() {
           {cartItems.map((e, idx) => (
             <div key={idx} className="flex justify-between ">
               <p className="text-[#9F9F9F] flex items-center gap-2">
-                {e?.cartItems?.[0].productTitle}
+                {e?.cartItems?.[0].productTitle.slice(0,17)+"..."}
                 <span className="text-color-black text-xs">
                   x {e?.cartItems?.[0].count}
                 </span>
               </p>
               <p className="font-light">
-                {" "}
                 Rs. {e?.cartItems?.[0].salePrice.toFixed(2)}
               </p>
             </div>

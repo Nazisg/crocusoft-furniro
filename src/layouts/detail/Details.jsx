@@ -9,18 +9,47 @@ import {
   decreaseQuantity,
   increaseQuantity,
 } from "../../redux/features/cartSlice";
+import { useMemo } from "react";
+import { addToCart } from "../../redux/features/addToCartSlice";
 export default function Details({ productInfo }) {
+  const [quantity, setQuantity] = useState(1);
+  const userId = localStorage.getItem("userId");
   const dispatch = useDispatch();
+  const [selectedColorId, setSelectedColorId] = useState(0);
+  const selectedProduct = useSelector((state) => state.product.selectedProduct);
+
+  const userID_Int = useMemo(() => {
+    if (userId) {
+      return parseInt(userId);
+    }
+  }, [userId]);
 
   const handleAddToCart = () => {
-    dispatch(addItem(productInfo));
+    dispatch(
+      addToCart({
+        productId: selectedProduct.id,
+        colorId: selectedColorId,
+        userId: userID_Int,
+        count: quantity,
+      })
+    );
   };
-  const quantity = useSelector(
-    (state) =>
-      state.cart.items.find((item) => item?.id === productInfo?.id)?.quantity ||
-      1
-  );
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
 
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (!selectedColorId && productInfo?.colors?.length > 0) {
+      setSelectedColorId(productInfo.colors[0]?.id);
+    }
+  }, [selectedColorId, productInfo]);
+  
   ///color change
   const [mainImage, setMainImage] = useState(null);
   const [productColorIndex, setProductColorIndex] = useState(0);
@@ -42,9 +71,11 @@ export default function Details({ productInfo }) {
     }
   }, [productInfo]);
 
-  const handleColorClick = (color, index) => {
+  const handleColorClick = (color, index, colorId) => {
     setActiveColor(color);
     setProductColorIndex(index);
+    setSelectedColorId(colorId);
+
   };
 
   ///active size
@@ -147,24 +178,16 @@ export default function Details({ productInfo }) {
                             : "none",
                       }}
                       className={`w-[30px] h-[30px] rounded-full`}
-                      onClick={() => handleColorClick(e?.colorHexCode, idx)}
+                      onClick={() => handleColorClick(e?.colorHexCode, idx, e?.id)}
                     ></button>
                   ))}
               </div>
             </div>
             <div className="flex gap-4 mt-4 w-full">
               <div className="border border-[#9F9F9F] rounded-[10px] flex gap-6 py-3 px-5">
-                <button
-                  onClick={() => dispatch(decreaseQuantity(productInfo.id))}
-                >
-                  -
-                </button>
-                <span className="font-medium">{quantity}</span>
-                <button
-                  onClick={() => dispatch(increaseQuantity(productInfo.id))}
-                >
-                  +
-                </button>
+              <button onClick={decreaseQuantity}>-</button>
+              <span className="font-medium">{quantity}</span>
+              <button onClick={increaseQuantity}>+</button>
               </div>
               <button
                 onClick={handleAddToCart}
