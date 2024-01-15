@@ -2,18 +2,18 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import hidden from "../assets/icons/hidden.svg";
-import show from "../assets/icons/show.svg";
-import { createUser, selectUser } from "../redux/features/authSlice";
+import hidden from "../../assets/icons/hidden.svg";
+import show from "../../assets/icons/show.svg";
+import { createUser } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [errorMessage, setErorrMessage] = useState("");
+  const success = useSelector((state) => state.auth.successRegister);
   const [showPassword, setShowPassword] = useState(false);
-  const user = useSelector(selectUser);
+  const errorMsg = useSelector((state) => state.auth.errorRegister);
 
   const validationSchema = Yup.object({
     userName: Yup.string()
@@ -55,9 +55,11 @@ export default function Register() {
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        await dispatch(createUser(values));
-        resetForm();
-        navigate("/login");
+        await dispatch(createUser(values)).then(() => {
+          if (success) {
+            navigate("/login");
+          }
+        });
       } catch (error) {
         console.error("There was an error submitting the form:", error);
       }
@@ -213,6 +215,9 @@ export default function Register() {
                   </div>
 
                   <div>
+                    <p className="text-color-red-accents text-[12px] mb-1">
+                      {errorMsg}
+                    </p>
                     <button
                       type="submit"
                       className="w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white duration-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -220,10 +225,6 @@ export default function Register() {
                       Create account
                     </button>
                   </div>
-                  <p className="text-color-red-accents text-[12px] !mt-2">
-                    {errorMessage}
-                  </p>
-
                   <p className="text-sm !mt-3 font-light text-gray-500 dark:text-gray-400">
                     Already have an account?{" "}
                     <Link

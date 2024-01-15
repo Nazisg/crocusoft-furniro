@@ -1,32 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { OtpConfirmation } from "../redux/features/forgotPasswordSlice";
 import { useNavigate } from "react-router-dom";
+import { SendOTPEmail, setEmail } from "../../redux/features/forgotPasswordSlice";
 
-export default function OtpConfirm() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const email = useSelector((state) => state.forgotPassword.email); 
-    const formikOTP = useFormik({
+const ForgotPassword = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const successMsg = useSelector((state) => state.forgotPassword.success);
+  const formik = useFormik({
     initialValues: {
-      otpToken: "",
+      email: "",
     },
     validationSchema: Yup.object({
-      otpToken: Yup.string().required("Required"),
+      email: Yup.string().email("Invalid email address").required("Required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      dispatch(
-        OtpConfirmation({
-          email: email,
-          otpToken: values.otpToken,
-        })
-      );
+    onSubmit: (values, { resetForm }) => {
+      dispatch(SendOTPEmail(values));
+      dispatch(setEmail(values.email));
+      navigate("/otp-confirm");
+      resetForm();
     },
   });
-  console.log(email)
+
   return (
     <div className="hero-bg w-full">
       <div className="backdrop-blur-[5px] w-full">
@@ -38,32 +35,32 @@ export default function OtpConfirm() {
               </h2>
               <form
                 className="mt-4 space-y-4 lg:mt-5 md:space-y-5"
-                onSubmit={formikOTP.handleSubmit}
+                onSubmit={formik.handleSubmit}
               >
                 <div>
                   <label
-                    htmlFor="otpToken"
+                    htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    OTP code
+                    Your email
                   </label>
                   <input
-                    type="text"
-                    name="otpToken"
-                    id="otpToken"
+                    type="email"
+                    name="email"
+                    id="email"
                     className={`${
-                      formikOTP.touched.otpToken && formikOTP.errors.otpToken
+                      formik.touched.email && formik.errors.email
                         ? "border border-color-red-accents"
                         : ""
                     }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    placeholder="XXXXXX"
-                    onChange={formikOTP.handleChange}
-                    onBlur={formikOTP.handleBlur}
-                    value={formikOTP.values.otpToken}
+                    placeholder="example@email.com"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
                   />
-                  {formikOTP.touched.otpToken && formikOTP.errors.otpToken ? (
+                  {formik.touched.email && formik.errors.email ? (
                     <div className="text-color-red-accents">
-                      {formikOTP.errors.otpToken}
+                      {formik.errors.email}
                     </div>
                   ) : null}
                 </div>
@@ -72,7 +69,7 @@ export default function OtpConfirm() {
                   type="submit"
                   className="w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-color duration-300"
                 >
-                  Change Password
+                  Send to Email
                 </button>
               </form>
             </div>
@@ -81,4 +78,6 @@ export default function OtpConfirm() {
       </div>
     </div>
   );
-}
+};
+
+export default ForgotPassword;

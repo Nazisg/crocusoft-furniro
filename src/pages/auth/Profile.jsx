@@ -3,10 +3,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import cart from "../assets/icons/cart.svg";
-import heart from "../assets/icons/header-heart.svg";
-import exit from "../assets/images/exit.png";
-import { UserData, editUser } from "../redux/features/authSlice";
+import cart from "../../assets/icons/cart.svg";
+import heart from "../../assets/icons/header-heart.svg";
+import exit from "../../assets/images/exit.png";
+import { UserData, editUser } from "../../redux/features/authSlice";
 
 export default function Profile() {
   const userData = useSelector((state) => state.auth.userData);

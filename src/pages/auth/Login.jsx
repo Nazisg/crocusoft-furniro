@@ -1,19 +1,18 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import hidden from "../assets/icons/hidden.svg";
-import show from "../assets/icons/show.svg";
-import { Loginn } from "../redux/features/authSlice";
+import hidden from "../../assets/icons/hidden.svg";
+import show from "../../assets/icons/show.svg";
+import { Loginn } from "../../redux/features/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const jwtToken = useSelector((state) => state.auth.jwtToken);
+  const success = useSelector((state) => state.auth.success);
   const errorMsg = useSelector((state) => state.auth.error);
   
   const validationSchema = Yup.object({
@@ -39,8 +38,12 @@ export default function Login() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(Loginn(values));
-        navigate("/");
+        await dispatch(Loginn(values))
+        .then(() => {
+          if (success) {
+            navigate("/");
+          }
+        })
       } catch (error) {
         console.error("There was an error submitting the form:", error);
       }
@@ -134,14 +137,15 @@ export default function Login() {
                       Forgot password?
                     </Link>
                   </div>
+                  <p className="text-color-red-accents text-[13px] mb-1 !mt-1">
+                      {errorMsg}
+                    </p>
                   <button
                     type="submit"
-                    className="w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    className="!mt-2 w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
                     Sign in
                   </button>
-                  <p className="text-[13px]">{errorMsg}</p>
-
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                     Don’t have an account yet?{" "}
                     <Link

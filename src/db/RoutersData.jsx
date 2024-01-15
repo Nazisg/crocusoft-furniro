@@ -5,14 +5,15 @@ import Blog from "../pages/Blog";
 import ProductDetail from "../pages/ProductDetail";
 import Checkout from "../pages/Checkout";
 import Cart from "../pages/Cart";
-import Login from "../pages/Login";
+import Login from "../pages/auth/Login";
 import Search from "../pages/Search";
 import Favorites from "../pages/Favorites";
-import Register from "../pages/Register";
-import ForgotPassword from "../pages/ForgotPassword";
+import Register from "../pages/auth/Register";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 import NotFound from "../pages/NotFound";
-import Profile from '../pages/Profile'
-import OtpConfirm from "../pages/OtpConfirm";
+import Profile from "../pages/auth/Profile";
+import OtpConfirm from "../pages/auth/OtpConfirm";
+import ResetPassword from "../pages/auth/ResetPassword";
 
 const RoutesData = [
   { path: "/", element: <Home /> },
@@ -30,5 +31,6 @@ const RoutesData = [
   { path: "/otp-confirm", element: <OtpConfirm /> },
   { path: "/profile", element: <Profile /> },
   { path: "*", element: <NotFound /> },
+  { path: "/reset-password", element: <ResetPassword /> },
 ];
 export default RoutesData;
