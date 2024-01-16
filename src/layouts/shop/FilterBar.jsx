@@ -34,26 +34,15 @@ export default function FilterBar({
         <div className="flex gap-3 lg:gap-6 items-center">
           <div className="flex gap-2 lg:gap-4 items-center text-[16px] lg:text-[18px] ">
             Show
-            {/* <input
-              className="py-1 pl-2 w-[50px]"
-              min={1}
-              max={48}
-              type="number"
-              placeholder="16"
-              value={takeProducts}
-              onChange={(e) => {
-                setTakeProducts(e.target.value);
-              }}
-            /> */}
               <select
               onChange={(e) => setTakeProducts(e.target.value)}
               className="w-[60px] py-2  px-2 text-[14px] lg:text-[16px]"
               id="selectTake"
               name="selectTake"
             >
+              <option value="8">8</option>
               <option value="16">16</option>
               <option value="32">32</option>
-              <option value="48">48</option>
 
             </select>
           </div>

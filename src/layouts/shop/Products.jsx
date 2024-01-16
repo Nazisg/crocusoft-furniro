@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import loading from "../../assets/icons/loading.gif";
 import Card from "../../components/Card";
 import { getFilterProducts } from "../../redux/features/filterSilce";
-import loading from "../../assets/icons/loading.gif";
 import Pagination from "../Pagination";
 export default function Products({
   categoryOptions,
@@ -23,13 +23,13 @@ export default function Products({
   const status = useSelector((state) => state.filter.status);
 
   const totalPages = Math.ceil(totalProductsCount / takeProducts);
-  
+
   useEffect(() => {
     dispatch(
       getFilterProducts({
         take: takeProducts,
         page: currentPage,
-        isNew: true,
+        isNew: isNew,
         categoryName: categoryOptions,
         productTags: tagsOptions,
         productSizes: sizesOptions,
@@ -62,7 +62,9 @@ export default function Products({
             <img className="w-[100px]" src={loading} alt="Loading" />
           </div>
         ) : filterProducts?.length === 0 ? (
-          <div className="text-[#898989]">The product you were looking for was not found</div>
+          <div className="text-[#898989]">
+            The product you were looking for was not found
+          </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filterProducts?.map((e) => (

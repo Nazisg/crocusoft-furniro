@@ -62,7 +62,9 @@ export default function BlogContainer() {
   const [blogCategory, setBlogCategory] = useState(null);
 
   const getBlogCategory = async () => {
-    const res = await axios.get(`https://immutable858-001-site1.atempurl.com/api/Blog/blog-categories`);
+    const res = await axios.get(
+      `https://immutable858-001-site1.atempurl.com/api/Blog/blog-categories`
+    );
     setBlogCategory(res.data);
   };
   useEffect(() => {
@@ -132,8 +134,8 @@ export default function BlogContainer() {
         </div>
         <Pagination
           currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
           totalPages={totalPages}
-          onPageChange={handlePageChange}
         />
       </div>
     </section>

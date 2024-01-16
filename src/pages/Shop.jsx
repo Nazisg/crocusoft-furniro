@@ -19,7 +19,7 @@ export default function Shop() {
   const [colorsOptions, setColorsOptions] = useState([]);
   const [minPrice, setMinPrice] = useState();
   const [maxPrice, setMaxPrice] = useState();
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNew] = useState("both");
   const [takeProducts, setTakeProducts] = useState(16);
   const [showModal, setShowModal] = useState(false);
   const [orderByOption, setOrderByOption] = useState("select")

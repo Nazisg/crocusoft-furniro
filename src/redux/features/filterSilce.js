@@ -61,7 +61,7 @@ export const getFilterProducts = createAsyncThunk(
       }${
         maxPrice > 0 ? `&MaxPrice=${maxPrice}` : ""
       }${
-        typeof isNew === Boolean ? `&IsNew=${isNew}` : ""
+         isNew !== "both" ? `&IsNew=${isNew}` : ""
       }${
         orderBy !== "select" ? `&OrderBy=${orderBy}` : ""
       }

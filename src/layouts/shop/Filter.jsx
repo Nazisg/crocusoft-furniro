@@ -59,9 +59,9 @@ export default function Filter({
     const colorNames = [...option];
     setColorsOptions(colorNames);
   };
-  const handleCheckboxChange = () => {
-    setIsNew(!isNew);
-  };
+  // const handleCheckboxChange = () => {
+  //   setIsNew(!isNew);
+  // };
   return (
     <div className="bg-[#F9F1E7] py-5 flex justify-center border border-t-[1px] border-t-color-gray-4">
       <div className="w-[85%] gap-5 grid min-[640px]:grid-cols-4 md:grid-cols-4 min-[1024px]:grid-cols-7 xl:grid-cols-7 2xl:grid-cols-7">
@@ -121,16 +121,20 @@ export default function Filter({
             }}
           />
         </div>
-        <label className="flex items-center gap-2 lg:pt-[30px] md:pt-[30px] sm:pt-[30px]">
-          <input
-            type="checkbox"
+        <div className="flex flex-col gap-2">
+          <p>New</p>
+          <select
+            onChange={(e) =>(setIsNew(e.target.value))}
+            className="w-[150px]  py-2  px-3 text-[14px] lg:text-[16px]"
             id="isNew"
-            className="accent-primary-color"
-            checked={isNew}
-            onChange={handleCheckboxChange}
-          />
-          New
-        </label>
+            name="isNew"
+          >
+            <option value="both">Both</option>
+            <option value="true">New</option>
+            <option value="false">Old</option>
+          </select>
+      
+        </div>
       </div>
     </div>
   );

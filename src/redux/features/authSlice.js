@@ -72,6 +72,24 @@ export const editUser = createAsyncThunk("user/editUser", async (editData) => {
   }
 });
 
+export const ChangePassword = createAsyncThunk("user/ChangePassword", async (Password) => {
+  try {
+    const response = await axios.put(
+      `${baseUrl}/ApplicationUser/ChangePassword`,
+      Password
+    );
+    console.log(response)
+    if (response.status === 200) {
+      console.log("Form data submitted successfully");
+    } else {
+      console.error("Error submitting form data:");
+    }
+  } catch (error) {
+    console.log(error?.response?.data?.Message, "erorr-text");
+    throw new Error("There was an error creating the user: " + error.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "user",
   initialState: {
@@ -150,6 +168,19 @@ const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(editUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //Change Password
+      .addCase(ChangePassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(ChangePassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload;
+      })
+      .addCase(ChangePassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

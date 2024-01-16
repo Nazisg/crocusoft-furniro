@@ -39,16 +39,15 @@ export default function Login() {
     onSubmit: async (values) => {
       try {
         await dispatch(Loginn(values))
-        .then(() => {
-          if (success) {
-            navigate("/");
-          }
-        })
-      } catch (error) {
+        if (success) {
+          navigate("/");
+        }
+     } catch (error) {
         console.error("There was an error submitting the form:", error);
       }
     },
   });
+   
   return (
     <div className="hero-bg w-full">
       <div className="backdrop-blur-[5px] w-full">

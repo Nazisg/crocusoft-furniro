@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import del from "../../assets/icons/delete.svg";
-import { removefromCart } from "../../redux/features/cartSlice";
 import { useMemo } from "react";
 import { deleteItem, getAllCartItems } from "../../redux/features/addToCartSlice";
 
@@ -97,7 +96,10 @@ export default function CartProducts() {
                   <img
                     className="w-[1.3rem] cursor-pointer ml-4 "
                     src={del}
-                    onClick={() => handleRemoveFromCart(e.id)}
+                    onClick={() =>  handleRemoveFromCart(
+                      e.cartItems[0].productId,
+                      e.cartItems[0].productImages.id
+                    )}
                   />
                 </td>
               </tr>
