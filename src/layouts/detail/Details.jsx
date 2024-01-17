@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import facebook from "../../assets/icons/facebook.svg";
 import linkedin from "../../assets/icons/linkedin.svg";
 import star from "../../assets/icons/star.svg";
 import twitter from "../../assets/icons/twitter.svg";
 import {
-  addItem,
-  decreaseQuantity,
-  increaseQuantity,
-} from "../../redux/features/cartSlice";
-import { useMemo } from "react";
-import { addToCart } from "../../redux/features/addToCartSlice";
+  addToCart,
+  getAllCartItems,
+} from "../../redux/features/addToCartSlice";
 export default function Details({ productInfo }) {
   const [quantity, setQuantity] = useState(1);
   const userId = localStorage.getItem("userId");
@@ -32,7 +29,9 @@ export default function Details({ productInfo }) {
         userId: userID_Int,
         count: quantity,
       })
-    );
+    ).then(() => {
+      dispatch(getAllCartItems(userID_Int));
+    });
   };
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -49,7 +48,7 @@ export default function Details({ productInfo }) {
       setSelectedColorId(productInfo.colors[0]?.id);
     }
   }, [selectedColorId, productInfo]);
-  
+
   ///color change
   const [mainImage, setMainImage] = useState(null);
   const [productColorIndex, setProductColorIndex] = useState(0);
@@ -75,7 +74,6 @@ export default function Details({ productInfo }) {
     setActiveColor(color);
     setProductColorIndex(index);
     setSelectedColorId(colorId);
-
   };
 
   ///active size
@@ -178,16 +176,18 @@ export default function Details({ productInfo }) {
                             : "none",
                       }}
                       className={`w-[30px] h-[30px] rounded-full`}
-                      onClick={() => handleColorClick(e?.colorHexCode, idx, e?.id)}
+                      onClick={() =>
+                        handleColorClick(e?.colorHexCode, idx, e?.id)
+                      }
                     ></button>
                   ))}
               </div>
             </div>
             <div className="flex gap-4 mt-4 w-full">
               <div className="border border-[#9F9F9F] rounded-[10px] flex gap-6 py-3 px-5">
-              <button onClick={decreaseQuantity}>-</button>
-              <span className="font-medium">{quantity}</span>
-              <button onClick={increaseQuantity}>+</button>
+                <button onClick={decreaseQuantity}>-</button>
+                <span className="font-medium">{quantity}</span>
+                <button onClick={increaseQuantity}>+</button>
               </div>
               <button
                 onClick={handleAddToCart}

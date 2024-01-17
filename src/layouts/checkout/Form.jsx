@@ -50,7 +50,7 @@ export default function Form() {
       additionalInformation: "",
     },
     validationSchema,
-    onSubmit: (values,{resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(
         fetchCheckoutData({
           appUserId: userID_Int,
@@ -68,11 +68,11 @@ export default function Form() {
         })
       ).then((confirm) => {
         console.log(confirm);
-        if(confirm?.meta?.requestStatus === "fulfilled"){
-          alert("ok")
+        if (confirm?.meta?.requestStatus === "fulfilled") {
+          alert("ok");
         }
       });
-      resetForm()
+      resetForm();
     },
   });
 
@@ -91,7 +91,7 @@ export default function Form() {
     setSelectedOption(event.target.value);
   };
   const subtotal = cartItems.reduce(
-    (acc, e) => acc + (e?.cartItems?.[0]?.salePrice || 0),
+    (acc, e) => acc + (e?.cartItems?.[0]?.subtotal || 0),
     0
   );
 
@@ -307,7 +307,7 @@ export default function Form() {
           {cartItems.map((e, idx) => (
             <div key={idx} className="flex justify-between ">
               <p className="text-[#9F9F9F] flex items-center gap-2">
-                {e?.cartItems?.[0].productTitle.slice(0,17)+"..."}
+                {e?.cartItems?.[0].productTitle.slice(0, 17) + "..."}
                 <span className="text-color-black text-xs">
                   x {e?.cartItems?.[0].count}
                 </span>

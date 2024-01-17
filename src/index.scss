@@ -60,6 +60,7 @@ a {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 /* Track */
@@ -77,29 +78,6 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #a8832b;
 }
-// .slick-current img:first-child {
-//   height: 82vh !important;
-// }
-
-//slider
-// .slick-slide {
-//   width: 100%;
-//   padding: 12px;
-// }
-
-// .slick-slide img {
-//   height: 68vh;
-//   width: 100%;
-// }
-
-// .slick-slide.slick-active {
-//   max-width: 400px !important;
-// }
-
-// .slick-slide.slick-current {
-//   max-width: 430px !important;
-// }
-
 .sticky-sidebar {
   position: sticky;
   top: 40px;
@@ -226,19 +204,16 @@ a {
   }
 }
 
-.css-1i837h3-ValueContainer2{
+.css-1i837h3-ValueContainer2 {
   height: 33px;
   width: 150px;
   width: 100%;
 }
-.css-13cymwt-control{
+.css-13cymwt-control {
   width: 150px;
   width: 100%;
-
-
 }
-.css-t3ipsp-control{
+.css-t3ipsp-control {
   width: 150px;
   width: 100%;
-
 }

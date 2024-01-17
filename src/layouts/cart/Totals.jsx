@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Totals() {
   const cartItems = useSelector((state) => state.addToCart.items);
 
   const subtotal = cartItems.reduce(
-    (acc, e) => acc + (e?.cartItems?.[0]?.salePrice || 0),
+    (acc, e) => acc + (e?.cartItems?.[0]?.subtotal || 0),
     0
   );
   return (
@@ -22,12 +22,14 @@ export default function Totals() {
         <div className="flex justify-between">
           <p className="font-medium">Total</p>
           <p className="text-xl text-primary-color font-medium">
-          Rs. {subtotal?.toFixed(2)}
-
+            Rs. {subtotal?.toFixed(2)}
           </p>
         </div>
       </div>
-      <Link to={cartItems.length > 0 ? "/checkout" : "/cart"} className="flex justify-center items-center">
+      <Link
+        to={cartItems.length > 0 ? "/checkout" : "/cart"}
+        className="flex justify-center items-center"
+      >
         <button className="lg:text-[18px] border border-color-black rounded-[15px] py-2 px-8 font-medium hover:bg-color-black hover:text-color-white duration-300">
           Check Out
         </button>

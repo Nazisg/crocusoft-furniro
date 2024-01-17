@@ -1,5 +1,7 @@
 import { useFormik } from "formik";
 import React, { useEffect, useMemo, useState } from "react";
+import { MdPersonOutline } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -11,7 +13,6 @@ import {
   UserData,
   editUser,
 } from "../../redux/features/authSlice";
-import { RiLockPasswordLine } from "react-icons/ri";
 
 export default function Profile() {
   const [isChangePassword, setIsChangePassword] = useState(false);
@@ -106,9 +107,13 @@ export default function Profile() {
   const handleEditClick = () => {
     setIsEditing((prevIsEditing) => !prevIsEditing);
   };
-const handleChangePassword=()=>{
-  setIsChangePassword(true)
-}
+  const handleChangePassword = () => {
+    setIsChangePassword(true);
+  };
+
+  const handleProfile = () => {
+    setIsChangePassword(false);
+  };
   return (
     <div className="pt-[90px] pb-8 bg-color-light-bg flex justify-center">
       <div className="w-[85%] flex flex-col justify-center gap-6  items-start  md:flex-row ">
@@ -121,6 +126,17 @@ const handleChangePassword=()=>{
           </div>
           <hr />
           <div className="flex flex-col gap-4">
+            <div className="flex gap-3 cursor-pointer" onClick={handleProfile}>
+              <MdPersonOutline size={20} />
+              <p>Profile</p>
+            </div>
+            <div
+              className="cursor-pointer flex gap-3"
+              onClick={handleChangePassword}
+            >
+              <RiLockPasswordLine size={20} />
+              <p> Change Password</p>
+            </div>
             <Link to="/favorites" className="flex gap-3">
               <img src={heart} className="w-5 cursor-pointer" />
               <p>Favorites</p>
@@ -135,10 +151,6 @@ const handleChangePassword=()=>{
               <p>Cart</p>
             </Link>
 
-            <div className="cursor-pointer flex gap-3" onClick={handleChangePassword}>
-              <RiLockPasswordLine className="w-5" />
-              <p> Change Password</p>
-            </div>
             <div
               onClick={() => {
                 {

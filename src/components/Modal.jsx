@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import cartItemdel from "../assets/icons/cartItemdel.svg";
 import cartdel from "../assets/icons/cartdel.svg";
-import { closeModal } from "../redux/features/modalSlice";
-import { useMemo } from "react";
 import { deleteItem, getAllCartItems } from "../redux/features/addToCartSlice";
+import { closeModal } from "../redux/features/modalSlice";
 export default function Modal() {
   const isOpen = useSelector((state) => state.modal.isOpen);
   const dispatch = useDispatch();
@@ -35,12 +34,14 @@ export default function Modal() {
           productId: productId,
           colorId: colorId,
         })
-      );
+      ).then(() => {
+        dispatch(getAllCartItems(userID_Int));
+      });
     }
   };
 
   const subtotal = cartItems.reduce(
-    (acc, e) => acc + (e?.cartItems?.[0]?.salePrice || 0),
+    (acc, e) => acc + (e?.cartItems?.[0]?.subtotal || 0),
     0
   );
 

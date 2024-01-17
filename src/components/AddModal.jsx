@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import cartItemdel from "../assets/icons/cartItemdel.svg";
 import { closeAddModal } from "../redux/features/addModalSlice";
-import { useParams } from "react-router-dom";
-import {
-  fetchProductById,
-  setSelectedProduct,
-} from "../redux/features/productSlice";
-import { addItem } from "../redux/features/cartSlice";
 import { addToCart, getAllCartItems } from "../redux/features/addToCartSlice";
-import { useMemo } from "react";
+import {
+  setSelectedProduct
+} from "../redux/features/productSlice";
 
 export default function AddModal() {
   const [quantity, setQuantity] = useState(1);
   const [selectedColorId, setSelectedColorId] = useState(null);
+  const [selectedSizeId, setSelectedSizeId] = useState(null);
+
   const userId = localStorage.getItem("userId");
   const userID_Int = useMemo(() => {
     if (userId) {
       return parseInt(userId);
     }
   }, [userId]);
-  
+
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -70,7 +69,7 @@ export default function AddModal() {
     setActiveColor(color);
     setSelectedColorId(colorId);
   };
-  
+
   useEffect(() => {
     if (!selectedColorId && selectedProduct?.colors?.length > 0) {
       setSelectedColorId(selectedProduct.colors[0]?.id);
@@ -84,8 +83,9 @@ export default function AddModal() {
       setActiveSize(selectedProduct?.sizes?.[0].sizeName);
     }
   }, [selectedProduct]);
-  const handleSizeClick = (size) => {
+  const handleSizeClick = (size, sizeId) => {
     setActiveSize(size);
+    setSelectedSizeId(sizeId);
   };
 
   const handleAddToCart = (e) => {
@@ -95,8 +95,12 @@ export default function AddModal() {
         colorId: selectedColorId,
         userId: userID_Int,
         count: quantity,
+        sizeId: selectedSizeId,
       })
-    );
+    ).then(() => {
+      dispatch(getAllCartItems(userID_Int));
+    });
+
     e.preventDefault();
     e.stopPropagation();
     handleCloseAddModal();
@@ -144,7 +148,7 @@ export default function AddModal() {
                         color: activeSize === e?.sizeName && "#ffff",
                       }}
                       className=" text-xs bg-[#F9F1E7]  w-[30px] h-[30px]  rounded-[5px]"
-                      onClick={() => handleSizeClick(e?.sizeName)}
+                      onClick={() => handleSizeClick(e?.sizeName, e?.id)}
                     >
                       {e.sizeName}
                     </button>

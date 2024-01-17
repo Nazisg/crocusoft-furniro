@@ -1,8 +1,10 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import del from "../../assets/icons/delete.svg";
-import { useMemo } from "react";
-import { deleteItem, getAllCartItems } from "../../redux/features/addToCartSlice";
+import {
+  deleteItem,
+  getAllCartItems,
+} from "../../redux/features/addToCartSlice";
 
 export default function CartProducts() {
   const cartItems = useSelector((state) => state.addToCart.items);
@@ -20,7 +22,7 @@ export default function CartProducts() {
       dispatch(getAllCartItems(userID_Int));
     }
   }, [userID_Int, dispatch]);
-  
+
   const handleRemoveFromCart = (productId, colorId) => {
     if (userID_Int) {
       dispatch(
@@ -29,10 +31,11 @@ export default function CartProducts() {
           productId: productId,
           colorId: colorId,
         })
-      );
+      ).then(() => {
+        dispatch(getAllCartItems(userID_Int));
+      });
     }
   };
- 
   return (
     <div className="w-full flex flex-col gap-8 ">
       <div className="relative overflow-x-auto w-full">
@@ -62,7 +65,7 @@ export default function CartProducts() {
             </tr>
           </thead>
           <tbody>
-            {cartItems.map((e,idx) => (
+            {cartItems.map((e, idx) => (
               <tr key={idx} className="w-full overflow-x-scroll h-[100px]">
                 <td>
                   <div className="flex items-center justify-center w-20 h-20">
@@ -72,13 +75,15 @@ export default function CartProducts() {
                     />
                   </div>
                 </td>
-                <td className="text-[#9F9F9F] text-[16px]">{e?.cartItems?.[0].productTitle}</td>
+                <td className="text-[#9F9F9F] text-[16px]">
+                  {e?.cartItems?.[0].productTitle}
+                </td>
                 <td className="text-[#9F9F9F] text-[16px] text-center">
                   {`Rs. ${e?.cartItems?.[0].salePrice.toFixed(2)}`}
                 </td>
                 <td>
                   <span className="border border-[#9F9F9F] w-6 h-6 py-1 px-3 rounded-md mx-auto flex items-center justify-center select-none">
-                   {e?.cartItems?.[0].count}
+                    {e?.cartItems?.[0].count}
                   </span>
                 </td>
                 <td>
@@ -87,19 +92,27 @@ export default function CartProducts() {
                   </span>
                 </td>
                 <td>
-                  <span style={{backgroundColor:e?.cartItems?.[0]?.productImages.colorHexCode}} className="block w-6 h-6 bg-[green] rounded-full mx-auto"></span>
+                  <span
+                    style={{
+                      backgroundColor:
+                        e?.cartItems?.[0]?.productImages.colorHexCode,
+                    }}
+                    className="block w-6 h-6 bg-[green] rounded-full mx-auto"
+                  ></span>
                 </td>
                 <td className="text-black font-medium text-base">
-                {`Rs. ${e?.cartItems?.[0].subtotal.toFixed(2)}`}
+                  {`Rs. ${e?.cartItems?.[0].subtotal.toFixed(2)}`}
                 </td>
                 <td>
                   <img
                     className="w-[1.3rem] cursor-pointer ml-4 "
                     src={del}
-                    onClick={() =>  handleRemoveFromCart(
-                      e.cartItems[0].productId,
-                      e.cartItems[0].productImages.id
-                    )}
+                    onClick={() =>
+                      handleRemoveFromCart(
+                        e.cartItems[0].productId,
+                        e.cartItems[0].productImages.id
+                      )
+                    }
                   />
                 </td>
               </tr>

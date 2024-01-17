@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
@@ -15,11 +15,11 @@ export const addToCart = createAsyncThunk(
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       };
-      const response = await axios.post(
-        `${baseUrl}/Cart/addToCart`,
-        product,
-        { headers }
-      );
+      const response = await axios.post(`${baseUrl}/Cart/addToCart`, product, {
+        headers,
+      });
+
+      console.log(response.data.message);
       return response.data;
     } catch (error) {
       throw error;
@@ -47,7 +47,7 @@ export const getAllCartItems = createAsyncThunk(
 );
 
 export const deleteItem = createAsyncThunk(
-  'cart/deleteItem',
+  "cart/deleteItem",
   async (deletebody, { rejectWithValue, getState }) => {
     try {
       const token = getJwtToken();
@@ -59,18 +59,17 @@ export const deleteItem = createAsyncThunk(
         data: deletebody,
       });
     } catch (error) {
-      console.error('Error deleting item:', error.message);
+      console.error("Error deleting item:", error.message);
       return rejectWithValue(error.message);
     }
   }
 );
 
-
 const cartSlice = createSlice({
   name: "addToCart",
   initialState: {
     items: [],
-    item:{},
+    item: {},
     favorites: [],
   },
   reducers: {},
@@ -98,8 +97,8 @@ const cartSlice = createSlice({
       .addCase(getAllCartItems.rejected, (state, action) => {
         state.status = "failed";
       })
-       //delete Item
-       .addCase(deleteItem.pending, (state) => {
+      //delete Item
+      .addCase(deleteItem.pending, (state) => {
         state.status = "loading";
       })
       .addCase(deleteItem.fulfilled, (state, action) => {

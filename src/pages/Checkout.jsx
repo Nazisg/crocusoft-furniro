@@ -1,6 +1,6 @@
 import React from "react";
-import PageHeader from "../layouts/PageHeader";
 import Feature from "../layouts/Feature";
+import PageHeader from "../layouts/PageHeader";
 import Form from "../layouts/checkout/Form";
 export default function Checkout() {
   return (
