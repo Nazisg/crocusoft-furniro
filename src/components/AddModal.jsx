@@ -109,7 +109,7 @@ export default function AddModal() {
   return (
     <div
       onClick={handleCloseAddModal}
-      className="bg-[#0000005d] fixed top-0 left-0 w-full h-full flex justify-center items-center z-[99] "
+      className="bg-[#0000005d]  fixed top-0 left-0 w-full h-full flex justify-center items-center z-[99] "
     >
       <div
         onClick={(e) => {
