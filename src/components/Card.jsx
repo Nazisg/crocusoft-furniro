@@ -5,9 +5,9 @@ import share from "../assets/icons/share.svg";
 import { openAddModal } from "../redux/features/addModalSlice";
 import {
   addToFavorites,
-  removeFromFavorites
+  removeFromFavorites,
 } from "../redux/features/cartSlice";
-import { fetchProductById } from "../redux/features/productSlice"; 
+import { fetchProductById } from "../redux/features/productSlice";
 
 export default function Card({
   title,

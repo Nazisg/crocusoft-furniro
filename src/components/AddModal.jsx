@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import cartItemdel from "../assets/icons/cartItemdel.svg";
 import { closeAddModal } from "../redux/features/addModalSlice";
 import { addToCart, getAllCartItems } from "../redux/features/addToCartSlice";
-import {
-  setSelectedProduct
-} from "../redux/features/productSlice";
+import { setSelectedProduct } from "../redux/features/productSlice";
 
 export default function AddModal() {
   const [quantity, setQuantity] = useState(1);
