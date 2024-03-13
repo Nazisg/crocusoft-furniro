@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function ProductTotal() {
   const [selectedOption, setSelectedOption] = useState("option1");
   const cartItems = useSelector((state) => state.addToCart.items);
-console.log(cartItems)
+  console.log(cartItems)
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -24,14 +24,14 @@ console.log(cartItems)
       </div>
       <div className="flex justify-between">
         {
-          cartItems.map(e=>(
+          cartItems.map(e => (
             <p className="text-[#9F9F9F] flex items-center gap-2">
-            {e?.cartItems?.[0].productTitle}
-            <span className="text-color-black text-xs">x {e?.cartItems?.[0].count}</span>
-          </p>
+              {e?.cartItems?.[0].productTitle}
+              <span className="text-color-black text-xs">x {e?.cartItems?.[0].count}</span>
+            </p>
           ))
         }
-       
+
         <p className="font-light">Rs. {subtotal?.toFixed(2)}</p>
       </div>
       <div className="flex justify-between">
@@ -41,14 +41,13 @@ console.log(cartItems)
       <div className="flex justify-between">
         <p>Total</p>
         <p className="font-bold text-primary-color text-[21px] lg:text-[22px]">
-        Rs. {subtotal?.toFixed(2)}
+          Rs. {subtotal?.toFixed(2)}
         </p>
       </div>
       <div className="bg-[#D9D9D9] w-full h-[1px] mt-2"></div>
       <label
-        className={`${
-          selectedOption === "option1" ? "text-color-black" : "text-[#9F9F9F]"
-        } flex gap-2`}
+        className={`${selectedOption === "option1" ? "text-color-black" : "text-[#9F9F9F]"
+          } flex gap-2`}
       >
         <input
           className="accent-color-black"
@@ -66,8 +65,7 @@ console.log(cartItems)
           until the funds have cleared in our account.
         </p>
       )}
-      <label className={`${
-          selectedOption === "option2" ? "text-color-black" : "text-[#9F9F9F]"
+      <label className={`${selectedOption === "option2" ? "text-color-black" : "text-[#9F9F9F]"
         } flex gap-2`}>
         <input
           type="radio"
@@ -84,8 +82,7 @@ console.log(cartItems)
           Order ID as the payment reference.
         </p>
       )}
-      <label  className={`${
-          selectedOption === "option3" ? "text-color-black" : "text-[#9F9F9F]"
+      <label className={`${selectedOption === "option3" ? "text-color-black" : "text-[#9F9F9F]"
         } flex gap-2`}>
         <input
           type="radio"

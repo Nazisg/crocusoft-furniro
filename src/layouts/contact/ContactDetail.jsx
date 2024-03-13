@@ -15,7 +15,7 @@ export default function ContactDetail() {
       dispatch(fetchContactData());
     }
   }, [dispatch, status]);
-  
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex gap-4 lg:gap-7 items-start">
