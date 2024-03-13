@@ -1,14 +1,14 @@
 import React from "react";
-import { closeModalMenu } from "../redux/features/menuModalSlice";
-import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
-import { NavLink, Link } from "react-router-dom";
-import MenuData from "../db/MenuData";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { Link, NavLink } from "react-router-dom";
+import cart from "../assets/icons/cart.svg";
+import heart from "../assets/icons/header-heart.svg";
 import person from "../assets/icons/person.svg";
 import search from "../assets/icons/search.svg";
-import heart from "../assets/icons/header-heart.svg";
-import cart from "../assets/icons/cart.svg";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import MenuData from "../db/MenuData";
+import { closeModalMenu } from "../redux/features/menuModalSlice";
 export default function MenuModal() {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
