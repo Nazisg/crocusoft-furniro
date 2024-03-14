@@ -1,8 +1,8 @@
 import React from "react";
-import PageHeader from "../layouts/PageHeader";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
+import PageHeader from "../layouts/PageHeader";
 export default function Favorites() {
   const addToFavorites = useSelector((state) => state.cart.favorites);
   return (
@@ -13,18 +13,18 @@ export default function Favorites() {
           {addToFavorites?.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 ">
               {addToFavorites?.map((e) => (
-                  <Card
-                    key={e?.id}
-                    id={e?.id}
-                    title={e?.title}
-                    img={e?.img}
-                    subTitle={e?.subTitle}
-                    discountedPrice={e?.discountedPrice}
-                    salePrice={e?.salePrice}
-                    discountPercent={e?.discountPercent}
-                    isNew={e?.isNew}
-                  />
-                ))}
+                <Card
+                  key={e?.id}
+                  id={e?.id}
+                  title={e?.title}
+                  img={e?.img}
+                  subTitle={e?.subTitle}
+                  discountedPrice={e?.discountedPrice}
+                  salePrice={e?.salePrice}
+                  discountPercent={e?.discountPercent}
+                  isNew={e?.isNew}
+                />
+              ))}
             </div>
           ) : (
             <div className="flex justify-center items-center py-10 flex-col gap-3 w-full">

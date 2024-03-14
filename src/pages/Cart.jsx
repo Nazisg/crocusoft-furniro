@@ -1,8 +1,8 @@
 import React from "react";
-import PageHeader from "../layouts/PageHeader";
 import Feature from "../layouts/Feature";
-import Totals from "../layouts/cart/Totals";
+import PageHeader from "../layouts/PageHeader";
 import CartProducts from "../layouts/cart/CartProducts";
+import Totals from "../layouts/cart/Totals";
 
 export default function () {
   return (

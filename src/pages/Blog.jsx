@@ -1,6 +1,6 @@
 import React from "react";
-import PageHeader from "../layouts/PageHeader";
 import Feature from "../layouts/Feature";
+import PageHeader from "../layouts/PageHeader";
 import BlogContainer from "../layouts/blog/BlogContainer";
 
 export default function Blog() {
