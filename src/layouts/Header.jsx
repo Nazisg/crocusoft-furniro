@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
+import { FiMenu } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import cart from "../assets/icons/cart.svg";
+import heart from "../assets/icons/header-heart.svg";
 import logo from "../assets/icons/logo.svg";
 import person from "../assets/icons/person.svg";
 import search from "../assets/icons/search.svg";
-import heart from "../assets/icons/header-heart.svg";
-import cart from "../assets/icons/cart.svg";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import MenuData from "../db/MenuData";
-import { openModal } from "../redux/features/modalSlice";
-import { openModalMenu } from "../redux/features/menuModalSlice";
-import { FiMenu } from "react-icons/fi";
 import { getAllCartItems } from "../redux/features/addToCartSlice";
-import { useMemo } from "react";
+import { openModalMenu } from "../redux/features/menuModalSlice";
+import { openModal } from "../redux/features/modalSlice";
 export default function Header() {
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("jwtToken");

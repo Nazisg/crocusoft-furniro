@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const Pagination = ({ currentPage, totalPages, setCurrentPage}) => {
+const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
   const maxButtonsToShow = 3;
   const [visibleRange, setVisibleRange] = useState({
     start: 1,
     end: Math.min(totalPages, maxButtonsToShow),
   });
-  
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
@@ -14,11 +14,10 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage}) => {
       const pageButton = (
         <button
           key={i}
-          className={`${
-            currentPage === i
+          className={`${currentPage === i
               ? "text-color-white bg-primary-color"
               : "bg-[#F9F1E7]"
-          } py-2 px-4 rounded-[10px] shadow-md duration-300`}
+            } py-2 px-4 rounded-[10px] shadow-md duration-300`}
           onClick={() => setCurrentPage(i)}
         >
           {i}

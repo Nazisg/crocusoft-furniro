@@ -1,6 +1,6 @@
 import React from "react";
-import dining from "../../assets/images/dining.png";
 import bedroom from "../../assets/images/bedroom.png";
+import dining from "../../assets/images/dining.png";
 import living from "../../assets/images/living.png";
 
 export default function Range() {
