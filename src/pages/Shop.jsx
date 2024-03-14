@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import FilterBar from "../layouts/shop/FilterBar";
-import PageHeader from "../layouts/PageHeader";
-import Products from "../layouts/shop/Products";
-import Feature from "../layouts/Feature";
-import Filter from "../layouts/shop/Filter";
 import { useDispatch } from "react-redux";
+import Feature from "../layouts/Feature";
+import PageHeader from "../layouts/PageHeader";
+import Filter from "../layouts/shop/Filter";
+import FilterBar from "../layouts/shop/FilterBar";
+import Products from "../layouts/shop/Products";
 import {
   fetchCategory,
-  fetchTags,
-  fetchSizes,
   fetchColors,
+  fetchSizes,
+  fetchTags,
 } from "../redux/features/filterSilce";
 export default function Shop() {
   const dispatch = useDispatch();

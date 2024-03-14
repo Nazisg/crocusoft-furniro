@@ -18,7 +18,6 @@ export const addToCart = createAsyncThunk(
       const response = await axios.post(`${baseUrl}/Cart/addToCart`, product, {
         headers,
       });
-
       console.log(response.data.message);
       return response.data;
     } catch (error) {
