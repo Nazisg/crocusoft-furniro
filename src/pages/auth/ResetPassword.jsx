@@ -26,7 +26,7 @@ export default function ResetPassword() {
           repeatNewPassword: values.repeatNewPassword,
         })
       );
-        navigate("/login");
+      navigate("/login");
     },
   });
 

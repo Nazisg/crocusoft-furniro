@@ -242,9 +242,8 @@ export default function Profile() {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       {...formik.getFieldProps("userName")}
-                      className={`border ${
-                        isEditing ? "border-color-gray-2" : ""
-                      } rounded-md p-2 w-full`}
+                      className={`border ${isEditing ? "border-color-gray-2" : ""
+                        } rounded-md p-2 w-full`}
                     />
                     {formik.touched.userName && formik.errors.userName ? (
                       <div className="text-red-500">
@@ -262,9 +261,8 @@ export default function Profile() {
                       onBlur={formik.handleBlur}
                       disabled={!isEditing}
                       {...formik.getFieldProps("firstName")}
-                      className={`border ${
-                        isEditing ? "border-color-gray-2" : ""
-                      } rounded-md p-2 w-full`}
+                      className={`border ${isEditing ? "border-color-gray-2" : ""
+                        } rounded-md p-2 w-full`}
                     />
                     {formik.touched.firstName && formik.errors.firstName ? (
                       <div className="text-red-500">
@@ -283,9 +281,8 @@ export default function Profile() {
                       disabled={!isEditing}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`border ${
-                        isEditing ? "border-color-gray-2" : ""
-                      } rounded-md p-2 w-full`}
+                      className={`border ${isEditing ? "border-color-gray-2" : ""
+                        } rounded-md p-2 w-full`}
                     />
                     {formik.touched.lastName && formik.errors.lastName ? (
                       <div className="text-red-500">
@@ -302,9 +299,8 @@ export default function Profile() {
                       disabled={!isEditing}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`border ${
-                        isEditing ? "border-color-gray-2" : ""
-                      } rounded-md p-2 w-full`}
+                      className={`border ${isEditing ? "border-color-gray-2" : ""
+                        } rounded-md p-2 w-full`}
                     />
                     {formik.touched.email && formik.errors.email ? (
                       <div className="text-red-500">{formik.errors.email}</div>
@@ -315,9 +311,8 @@ export default function Profile() {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className={`py-2 px-8 text-white ${
-                    isEditing ? "bg-green-500" : "bg-red-500"
-                  } rounded-lg`}
+                  className={`py-2 px-8 text-white ${isEditing ? "bg-green-500" : "bg-red-500"
+                    } rounded-lg`}
                   onClick={() => {
                     if (isEditing) formik.handleSubmit();
                     handleEditClick();

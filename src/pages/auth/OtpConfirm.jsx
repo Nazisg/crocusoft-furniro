@@ -1,15 +1,15 @@
-import React from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { OtpConfirmation } from "../../redux/features/forgotPasswordSlice";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { OtpConfirmation } from "../../redux/features/forgotPasswordSlice";
 
 export default function OtpConfirm() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const email = useSelector((state) => state.forgotPassword.email); 
-    const formikOTP = useFormik({
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.forgotPassword.email);
+  const formikOTP = useFormik({
     initialValues: {
       otpToken: "",
     },
@@ -52,11 +52,10 @@ export default function OtpConfirm() {
                     type="text"
                     name="otpToken"
                     id="otpToken"
-                    className={`${
-                      formikOTP.touched.otpToken && formikOTP.errors.otpToken
+                    className={`${formikOTP.touched.otpToken && formikOTP.errors.otpToken
                         ? "border border-color-red-accents"
                         : ""
-                    }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                      }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="XXXXXX"
                     onChange={formikOTP.handleChange}
                     onBlur={formikOTP.handleBlur}

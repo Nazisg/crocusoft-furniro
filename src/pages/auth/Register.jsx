@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import hidden from "../../assets/icons/hidden.svg";
 import show from "../../assets/icons/show.svg";
 import { createUser } from "../../redux/features/authSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -188,11 +188,10 @@ export default function Register() {
                         id="password"
                         {...formik.getFieldProps("password")}
                         placeholder="••••••••"
-                        className={`${
-                          formik.touched.password && formik.errors.password
+                        className={`${formik.touched.password && formik.errors.password
                             ? "border-red-500"
                             : ""
-                        } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                          } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         required=""
                       />
                       <button

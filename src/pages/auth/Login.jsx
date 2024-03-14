@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -14,7 +14,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const success = useSelector((state) => state.auth.success);
   const errorMsg = useSelector((state) => state.auth.error);
-  
+
   const validationSchema = Yup.object({
     userName: Yup.string()
       .required("Required")
@@ -42,12 +42,12 @@ export default function Login() {
         if (success) {
           navigate("/");
         }
-     } catch (error) {
+      } catch (error) {
         console.error("There was an error submitting the form:", error);
       }
     },
   });
-   
+
   return (
     <div className="hero-bg w-full">
       <div className="backdrop-blur-[5px] w-full">
@@ -73,11 +73,10 @@ export default function Login() {
                       type="text"
                       id="userName"
                       {...formik.getFieldProps("userName")}
-                      className={`${
-                        formik.touched.userName && formik.errors.userName
+                      className={`${formik.touched.userName && formik.errors.userName
                           ? "border border-color-red-accents"
                           : ""
-                      } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                        } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                       placeholder="username"
                       value={formik.values.userName}
                       required=""
@@ -101,11 +100,10 @@ export default function Login() {
                         id="password"
                         {...formik.getFieldProps("password")}
                         placeholder="••••••••"
-                        className={`${
-                          formik.touched.password && formik.errors.password
+                        className={`${formik.touched.password && formik.errors.password
                             ? "border-red-500"
                             : ""
-                        } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                          } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         required=""
                         value={formik.values.password}
                       />
@@ -137,8 +135,8 @@ export default function Login() {
                     </Link>
                   </div>
                   <p className="text-color-red-accents text-[13px] mb-1 !mt-1">
-                      {errorMsg}
-                    </p>
+                    {errorMsg}
+                  </p>
                   <button
                     type="submit"
                     className="!mt-2 w-full text-primary-color border border-primary-color hover:bg-primary-color hover:text-color-white duration-300 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import { SendOTPEmail, setEmail } from "../../redux/features/forgotPasswordSlice";
 
 const ForgotPassword = () => {
@@ -48,11 +48,10 @@ const ForgotPassword = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className={`${
-                      formik.touched.email && formik.errors.email
+                    className={`${formik.touched.email && formik.errors.email
                         ? "border border-color-red-accents"
                         : ""
-                    }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                      }bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-color focus:border-primary-color block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="example@email.com"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
