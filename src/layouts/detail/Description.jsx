@@ -38,7 +38,7 @@ export default function Description() {
             {description?.introduction}
           </p>
           <div className="flex w-full gap-5 lg:gap-6 min-[320px]:flex-col sm:flex-col md:flex-row lg:flex-row">
-            {description?.imageFiles?.map((e,i) => (
+            {description?.imageFiles?.map((e, i) => (
               <div key={i} className="bg-[#F9F1E7] rounded-[10px] w-full h-52 flex justify-center items-center">
                 <img src={e} className="w-full h-full object-cover" />
               </div>

@@ -1,6 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 export default function GridGallery() {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -10,7 +9,7 @@ export default function GridGallery() {
           "https://immutable858-001-site1.atempurl.com/api/Home"
         );
         setData(response.data);
-      } catch (error) {}
+      } catch (error) { }
     };
     fetchData();
   }, []);

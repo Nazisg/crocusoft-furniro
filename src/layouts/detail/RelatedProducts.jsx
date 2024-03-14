@@ -43,7 +43,7 @@ export default function RelatedProducts() {
             <button className="border border-primary-color bg-color-white text-[14px] lg:text-[16px] text-primary-color font-semibold py-1 px-9 lg:px-14 hover:bg-primary-color hover:text-color-white transition-all duration-300">
               Show More
             </button>
-           )} 
+          )}
         </div>
       </div>
     </div>

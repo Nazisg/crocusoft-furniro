@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
-import img from "../../assets/images/slider-img.png";
-import img2 from "../../assets/images/slider-img-2.png";
-import img3 from "../../assets/images/dining.png";
-import img4 from '../../assets/images/living.png'
-import arrow from "../../assets/icons/slider-next.svg";
-import right from "../../assets/icons/right.svg";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import right from "../../assets/icons/right.svg";
+import arrow from "../../assets/icons/slider-next.svg";
+import img3 from "../../assets/images/dining.png";
+import img4 from '../../assets/images/living.png';
+import img2 from "../../assets/images/slider-img-2.png";
+import img from "../../assets/images/slider-img.png";
 export default function Carousel() {
   const slides = [
     {
@@ -51,9 +51,8 @@ export default function Carousel() {
     customPaging: function (i) {
       return (
         <div
-          className={`slick-dot ${
-            activeSlide == slides[i].id ? "slick-active" : ""
-          }`}
+          className={`slick-dot ${activeSlide == slides[i].id ? "slick-active" : ""
+            }`}
         >
           <div className="dot-inner"></div>
         </div>
@@ -115,9 +114,8 @@ export default function Carousel() {
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className={`${
-                      slide.id === activeSlide ? "h-[480px] w-[400px]" : "h-[430px] w-[370px]"
-                    } transition-all duration-300 px-4`}
+                    className={`${slide.id === activeSlide ? "h-[480px] w-[400px]" : "h-[430px] w-[370px]"
+                      } transition-all duration-300 px-4`}
                   />
                   {isActive && (
                     <div className="absolute bottom-10 left-10 w-[210px] bg-color-white bg-opacity-75 px-6 py-9">
@@ -146,7 +144,7 @@ export default function Carousel() {
             <button
               className="absolute top-[50%] left-[3%]  bg-color-white rounded-full h-10 w-10 flex justify-center items-center shadow-lg hover:bg-neutral-100 duration-300`"
               onClick={() => sliderRef.current?.slickPrev()}
-              
+
             >
               <img
                 src={arrow}

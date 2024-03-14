@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import { submitFormData } from "../../redux/features/contactSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactMessage() {
   const dispatch = useDispatch();
@@ -63,9 +63,8 @@ export default function ContactMessage() {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className={`${
-            formik.touched.name && formik.errors.name ? "border-red-500" : ""
-          } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 w-full`}
+          className={`${formik.touched.name && formik.errors.name ? "border-red-500" : ""
+            } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 w-full`}
           placeholder="Abc"
         />
         {formik.touched.name && formik.errors.name ? (
@@ -82,9 +81,8 @@ export default function ContactMessage() {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className={`${
-            formik.touched.email && formik.errors.email ? "border-red-500" : ""
-          } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 w-full`}
+          className={`${formik.touched.email && formik.errors.email ? "border-red-500" : ""
+            } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 w-full`}
           placeholder="Abc@def.com"
         />
         {formik.touched.email && formik.errors.email ? (
@@ -112,11 +110,10 @@ export default function ContactMessage() {
           value={formik.values.message}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className={`${
-            formik.touched.message && formik.errors.message
+          className={`${formik.touched.message && formik.errors.message
               ? "border-red-500"
               : ""
-          } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 outline-none resize-none w-full h-40`}
+            } placeholder:text-[#9F9F9F] placeholder:font-normal border border-[#9F9F9F] rounded-[10px] min-[320px]:p-2 sm:p-3 md:p-4 lg:p-4 outline-none resize-none w-full h-40`}
           placeholder="Hi! I’d like to ask about"
         ></textarea>
         {formik.touched.message && formik.errors.message ? (
