@@ -8,7 +8,6 @@ import App from "./App.jsx";
 import "./index.scss";
 import { persistor, store } from "./redux/app/store.js";
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
