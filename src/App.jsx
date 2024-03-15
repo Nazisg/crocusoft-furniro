@@ -10,7 +10,7 @@ import Routers from "./routers/Routers";
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
   const isOpenMenu = useSelector((state) => state.menuModal.isOpen);
-  const isOpenAddModal =useSelector((state)=>state.addModal.isOpenAddModal)
+  const isOpenAddModal = useSelector((state) => state.addModal.isOpenAddModal)
   return (
     <>
       <Router>
