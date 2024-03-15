@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
@@ -69,7 +69,7 @@ const forgotPasswordSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    email: null, 
+    email: null,
   },
   reducers: {
     setEmail: (state, action) => {
@@ -78,7 +78,7 @@ const forgotPasswordSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    //SendOTPEmail
+      //SendOTPEmail
       .addCase(SendOTPEmail.pending, (state) => {
         state.loading = true;
         state.error = null;

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
 
@@ -33,7 +33,7 @@ export const fetchContactData = createAsyncThunk(
       return response?.data?.[0];
     } catch (error) {
       console.error("Error fetching contact data:", error.message);
-      throw error; 
+      throw error;
     }
   }
 );
@@ -65,7 +65,7 @@ const contactSlice = createSlice({
       })
       .addCase(fetchContactData.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.data = action.payload; 
+        state.data = action.payload;
       })
       .addCase(fetchContactData.rejected, (state, action) => {
         state.status = "failed";

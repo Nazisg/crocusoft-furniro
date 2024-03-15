@@ -38,32 +38,23 @@ export const getFilterProducts = createAsyncThunk(
     orderBy,
   }) => {
     const response = await axios.get(
-      `${baseUrl}/UserProduct/Products?Page=${page}${
-        take > 0 ? `&ShowMore.Take=${take}` : ""
-      }${
-        categoryName.length > 0
-          ? categoryName?.map((item) => `&CategoryNames=${item.value}`).join()
-          : ""
-      }${
-        productTags.length > 0
-          ? productTags?.map((item) => `&ProductTags=${item.value}`).join()
-          : ""
-      }${
-        productSizes.length > 0
-          ? productSizes?.map((item) => `&ProductSizes=${item.value}`).join()
-          : ""
-      }${
-        productColors.length > 0
-          ? productColors?.map((item) => `&ProductColors=${item.value.replace(/^#/, '%23')}`).join()
-          : ""
-      }${
-        minPrice > 0 ? `&MinPrice=${minPrice}` : ""
-      }${
-        maxPrice > 0 ? `&MaxPrice=${maxPrice}` : ""
-      }${
-         isNew !== "both" ? `&IsNew=${isNew}` : ""
-      }${
-        orderBy !== "select" ? `&OrderBy=${orderBy}` : ""
+      `${baseUrl}/UserProduct/Products?Page=${page}${take > 0 ? `&ShowMore.Take=${take}` : ""
+      }${categoryName.length > 0
+        ? categoryName?.map((item) => `&CategoryNames=${item.value}`).join()
+        : ""
+      }${productTags.length > 0
+        ? productTags?.map((item) => `&ProductTags=${item.value}`).join()
+        : ""
+      }${productSizes.length > 0
+        ? productSizes?.map((item) => `&ProductSizes=${item.value}`).join()
+        : ""
+      }${productColors.length > 0
+        ? productColors?.map((item) => `&ProductColors=${item.value.replace(/^#/, '%23')}`).join()
+        : ""
+      }${minPrice > 0 ? `&MinPrice=${minPrice}` : ""
+      }${maxPrice > 0 ? `&MaxPrice=${maxPrice}` : ""
+      }${isNew !== "both" ? `&IsNew=${isNew}` : ""
+      }${orderBy !== "select" ? `&OrderBy=${orderBy}` : ""
       }
       `
     );
