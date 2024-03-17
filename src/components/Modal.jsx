@@ -5,6 +5,7 @@ import cartItemdel from "../assets/icons/cartItemdel.svg";
 import cartdel from "../assets/icons/cartdel.svg";
 import { deleteItem, getAllCartItems } from "../redux/features/addToCartSlice";
 import { closeModal } from "../redux/features/modalSlice";
+
 export default function Modal() {
   const isOpen = useSelector((state) => state.modal.isOpen);
   const dispatch = useDispatch();
