@@ -9,6 +9,7 @@ import person from "../assets/icons/person.svg";
 import search from "../assets/icons/search.svg";
 import MenuData from "../db/MenuData";
 import { closeModalMenu } from "../redux/features/menuModalSlice";
+
 export default function MenuModal() {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
