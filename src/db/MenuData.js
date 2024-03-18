@@ -4,4 +4,5 @@ const MenuData = [
   { to: "/blog", text: "Blog" },
   { to: "/contact", text: "Contact" },
 ];
+
 export default MenuData;
