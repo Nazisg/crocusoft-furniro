@@ -15,6 +15,7 @@ export default function BlogContainer() {
   const handleChange = (e) => {
     setBlogSearch(e.target.value);
   };
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
