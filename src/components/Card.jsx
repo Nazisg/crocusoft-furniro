@@ -21,25 +21,29 @@ export default function Card({
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.userId);
 
   const handleAddtoModal = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    dispatch(fetchProductById(id));
-
-    dispatch(
-      openAddModal({
-        id,
-        title,
-        img,
-        subTitle,
-        discountedPrice,
-        salePrice,
-        discountPercent,
-        isNew,
-      })
-    );
-    document.body.style.overflow = "hidden";
+    if (isLoggedIn === 0) {
+      navigate("/login");
+    } else {
+      dispatch(fetchProductById(id));
+      dispatch(
+        openAddModal({
+          id,
+          title,
+          img,
+          subTitle,
+          discountedPrice,
+          salePrice,
+          discountPercent,
+          isNew,
+        })
+      );
+      document.body.style.overflow = "hidden";
+    }
   };
 
   const isFavorite = useSelector((state) =>
@@ -91,11 +95,10 @@ export default function Card({
       <img className="w-full h-72 object-cover object-center" src={img} />
       {discountPercent > 0 || isNew ? (
         <div
-          className={`${
-            isNew && discountPercent === 0
-              ? "bg-[#2EC1AC]"
-              : "bg-color-red-accents"
-          } absolute top-3 right-3 w-12 h-12 text-color-white flex justify-center items-center rounded-full`}
+          className={`${isNew && discountPercent === 0
+            ? "bg-[#2EC1AC]"
+            : "bg-color-red-accents"
+            } absolute top-3 right-3 w-12 h-12 text-color-white flex justify-center items-center rounded-full`}
         >
           {isNew && discountPercent === 0 ? "New" : `-${discountPercent}%`}
         </div>

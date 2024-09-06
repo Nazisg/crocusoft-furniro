@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "https://immutable858-001-site1.atempurl.com/api";
+const baseUrl = "https://csoftprojects.com/api";
 
 export const createUser = createAsyncThunk(
   "user/createUser",

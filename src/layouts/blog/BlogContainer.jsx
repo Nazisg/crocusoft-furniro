@@ -20,7 +20,7 @@ export default function BlogContainer() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://immutable858-001-site1.atempurl.com/api/Blog?Page=${currentPage}&ShowMore.Take=${itemsPerPage}&Prompt=${blogSearch}`
+          `https://csoftprojects.com/api/Blog?Page=${currentPage}&ShowMore.Take=${itemsPerPage}&Prompt=${blogSearch}`
         );
         setData(response.data[0].blogs);
         const totalPages = Math.ceil(
@@ -40,7 +40,7 @@ export default function BlogContainer() {
 
   const getRecentPosts = async () => {
     const res = await axios.get(
-      `https://immutable858-001-site1.atempurl.com/api/Blog/recent-posts`
+      `https://csoftprojects.com/api/Blog/recent-posts`
     );
     setRecentPosts(res.data);
   };
@@ -52,7 +52,7 @@ export default function BlogContainer() {
 
   const getPost = async () => {
     const res =
-      await axios.get(`https://immutable858-001-site1.atempurl.com/api/Blog?Page=1&ShowMore.Take=8
+      await axios.get(`https://csoftprojects.com/api/Blog?Page=1&ShowMore.Take=8
       `);
     setPosts(res.data);
   };
@@ -64,7 +64,7 @@ export default function BlogContainer() {
 
   const getBlogCategory = async () => {
     const res = await axios.get(
-      `https://immutable858-001-site1.atempurl.com/api/Blog/blog-categories`
+      `https://csoftprojects.com/api/Blog/blog-categories`
     );
     setBlogCategory(res.data);
   };

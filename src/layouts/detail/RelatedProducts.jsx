@@ -9,7 +9,7 @@ export default function RelatedProducts() {
 
   const getProduct = async (categoryId) => {
     const res = await axios.get(
-      `https://immutable858-001-site1.atempurl.com/api/UserProduct/GetRelatedCategoryProducts?CategoryId=1&Page=1&ShowMore.Take=4`
+      `https://csoftprojects.com/api/UserProduct/GetRelatedCategoryProducts?CategoryId=1&Page=1&ShowMore.Take=4`
     );
     setRelated(res.data);
   };
